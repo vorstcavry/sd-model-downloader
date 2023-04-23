@@ -6,17 +6,13 @@ import requests
 import werkzeug
 
 root = "-d /content"
-sd_path = "/stable-diffusion-webui"
+sd_path = "/sd-webui"
 
 def folder(content_type):
     if content_type == "Checkpoint":
        return gr.Textbox.update(value="/models/Stable-diffusion")
-    elif content_type == "Hypernetwork":
-         return gr.Textbox.update(value="/models/hypernetworks")
     elif content_type == "TextualInversion/Embedding":
          return gr.Textbox.update(value="/embeddings")
-    elif content_type == "AestheticGradient":
-         return gr.Textbox.update(value="/extensions/stable-diffusion-webui-aesthetic-gradients/aesthetic_embeddings")
     elif content_type == "VAE":
          return gr.Textbox.update(value="/models/VAE")
     elif content_type == "LoRA/LyCORIS(LoCon/LoHA)":
@@ -57,7 +53,7 @@ def on_ui_tabs():
     with gr.Blocks() as downloader:    
          with gr.Row():
               with gr.Column(scale=2):
-                   content_type = gr.Radio(label="1. Choose Content type", choices=["Checkpoint","Hypernetwork","TextualInversion/Embedding","AestheticGradient", "VAE", "LoRA/LyCORIS(LoCon/LoHA)"])
+                   content_type = gr.Radio(label="1. Choose Content type", choices=["Checkpoint","TextualInversion/Embedding","VAE", "LoRA/LyCORIS(LoCon/LoHA)"])
                    content_type1 = gr.Textbox(visible=False)
                    content_type.change(fn=folder, inputs=content_type, outputs=content_type1)
          with gr.Row():
