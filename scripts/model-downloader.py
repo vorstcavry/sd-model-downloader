@@ -4,17 +4,15 @@ from modules import scripts, script_callbacks
 
 def folder(content_type):
     if content_type == "Checkpoint":
-       return gr.Textbox.update(value=" -d /content/stable-diffusion-webui/models/Stable-diffusion")
+       return gr.Textbox.update(value=" -d /content/cagliostro-colab-ui/models/Stable-diffusion")
     elif content_type == "Hypernetwork":
-         return gr.Textbox.update(value=" -d /content/stable-diffusion-webui/models/hypernetworks")
+         return gr.Textbox.update(value=" -d /content/cagliostro-colab-ui/models/hypernetworks")
     elif content_type == "TextualInversion/Embedding":
-         return gr.Textbox.update(value=" -d /content/stable-diffusion-webui/embeddings")
-    elif content_type == "AestheticGradient":
-         return gr.Textbox.update(value=" -d /content/stable-diffusion-webui/extensions/stable-diffusion-webui-aesthetic-gradients/aesthetic_embeddings")
+         return gr.Textbox.update(value=" -d /content/cagliostro-colab-ui/embeddings")
     elif content_type == "VAE":
-         return gr.Textbox.update(value=" -d /content/stable-diffusion-webui/models/VAE")
+         return gr.Textbox.update(value=" -d /content/cagliostro-colab-ui/models/VAE")
     elif content_type == "Lora":
-         return gr.Textbox.update(value=" -d /content/stable-diffusion-webui/models/Lora")
+         return gr.Textbox.update(value=" -d /content/cagliostro-colab-ui/models/Lora")
 
 def cfn(filename1, filename, opt):
     if filename1 == "Use original Filename from the Source":
@@ -42,7 +40,7 @@ def on_ui_tabs():
     with gr.Blocks() as downloader:    
         with gr.Row():
             with gr.Column(scale=2):
-                content_type = gr.Radio(label="1. Choose Content type", choices=["Checkpoint","Hypernetwork","TextualInversion/Embedding","AestheticGradient", "VAE", "Lora"])
+                content_type = gr.Radio(label="1. Choose Content type", choices=["Checkpoint","Hypernetwork","TextualInversion/Embedding","VAE", "Lora"])
                 content_type1 = gr.Textbox(visible=False)
                 content_type.change(fn=folder, inputs=content_type, outputs=content_type1, queue=True)
         with gr.Row():
